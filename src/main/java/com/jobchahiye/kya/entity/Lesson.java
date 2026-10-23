@@ -1,9 +1,10 @@
 package com.jobchahiye.kya.entity;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.time.Instant;
-
+@ToString
 @Entity
 @Table
 public class Lesson {
@@ -88,4 +89,5 @@ public class Lesson {
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
+
 }

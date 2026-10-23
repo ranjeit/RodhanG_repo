@@ -1,5 +1,6 @@
 package com.jobchahiye.kya.controller;
 
+import com.jobchahiye.kya.dto.LessonRequest;
 import com.jobchahiye.kya.entity.Lesson;
 import com.jobchahiye.kya.service.ILessonService;
 import jakarta.validation.Valid;
@@ -10,20 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class LessonController {
     private final ILessonService lessonService;
 
     public LessonController(ILessonService lessonService) {
         this.lessonService = lessonService;
-    }
-    // create lesson
-    @PostMapping
-   public ResponseEntity<Lesson> persistLesson(@Valid
-                                               @RequestParam String topic,
-                                               @RequestParam String category){
-        Lesson lesson = lessonService.create(topic, category);
-    return ResponseEntity.status(HttpStatus.CREATED).body(lesson);
     }
     // get all lessons as records
     @GetMapping
@@ -38,4 +31,12 @@ public class LessonController {
         Lesson lesson = lessonService.getById(id);
         return ResponseEntity.ok(lesson);
     }
+    // create
+@PostMapping
+public ResponseEntity<Lesson> persistLesson(@Valid
+                                            @RequestParam String topic,
+                                            @RequestParam String category){
+    Lesson lesson = lessonService.create(topic, category);
+    return ResponseEntity.status(HttpStatus.CREATED).body(lesson);
+}
 }
